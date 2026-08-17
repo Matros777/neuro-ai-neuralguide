@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://neuralguide.ru/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NeuralGuide">
+<meta property="og:title" content="NeuralGuide — полная карта нейросетей и ИИ-сервисов">
+<meta property="og:description" content="NeuralGuide — навигатор по нейросетям: каталог ИИ-сервисов от ChatGPT до OpenRouter, обзоры, гайды и сравнения. Подбирайте лучший ИИ под свою задачу.">
+<meta property="og:url" content="https://neuralguide.ru/">
+<meta property="og:image" content="https://neuralguide.ru/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NeuralGuide — полная карта нейросетей и ИИ-сервисов">
+<meta name="twitter:description" content="NeuralGuide — навигатор по нейросетям: каталог ИИ-сервисов от ChatGPT до OpenRouter, обзоры, гайды и сравнения. Подбирайте лучший ИИ под свою задачу.">
+<meta name="twitter:image" content="https://neuralguide.ru/images/og-cover.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NeuralGuide — полная карта нейросетей и ИИ-сервисов</title>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon/favicon-256.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-256.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+
+<meta name="description" content="NeuralGuide — навигатор по нейросетям: каталог ИИ-сервисов от ChatGPT до OpenRouter, обзоры, гайды и сравнения. Подбирайте лучший ИИ под свою задачу.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.7/dist/forms.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace'],
+      },
+      colors: {
+        ink: '#0a0a0f',
+        panel: '#12121a',
+      },
+    }
+  }
+}
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0f; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(139,92,246,.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(139,92,246,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .glow-cyan { text-shadow: 0 0 24px rgba(34,211,238,.45); }
+  .glow-violet { text-shadow: 0 0 30px rgba(139,92,246,.5); }
+  .card-hover { transition: transform .25s ease, border-color .25s ease, background .25s ease; }
+  .card-hover:hover { transform: translateY(-4px); border-color: rgba(34,211,238,.4); }
+  .blob { animation: blob 14s ease-in-out infinite alternate; }
+  @keyframes blob {
+    0% { transform: translate(0,0) scale(1); }
+    100% { transform: translate(40px,-30px) scale(1.2); }
+  }
+  .reveal { opacity:0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in { opacity:1; transform:none; }
+  ::selection { background: rgba(34,211,238,.3); }
+  .cat-img { aspect-ratio: 16/9; object-fit: cover; }
+  .shine-white, .shine-grad {
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .shine-white {
+    background-image:
+      linear-gradient(115deg, transparent 38%, rgba(255,255,255,.95) 50%, transparent 62%),
+      linear-gradient(115deg, #f8fafc 0%, #e2e8f0 100%);
+    background-size: 300% 100%, 100% 100%;
+    background-position: 300% 0, 0 0;
+    animation: shineRun 6s cubic-bezier(.45,.05,.4,1) infinite;
+  }
+  .shine-grad {
+    background-image:
+      linear-gradient(115deg, transparent 38%, rgba(255,255,255,.95) 50%, transparent 62%),
+      linear-gradient(115deg, #22d3ee 0%, #38bdf8 35%, #a78bfa 70%, #c084fc 100%);
+    background-size: 300% 100%, 100% 100%;
+    background-position: 300% 0, 0 0;
+    animation: shineRun 6s cubic-bezier(.45,.05,.4,1) infinite;
+  }
+  @keyframes shineRun {
+    0%   { background-position: 300% 0, 0 0; }
+    70%  { background-position: -100% 0, 0 0; }
+    100% { background-position: -100% 0, 0 0; }
+  }
+  .hero-img { animation: heroFloat 6s ease-in-out infinite alternate; mask-image: radial-gradient(ellipse at center, black 55%, transparent 78%); -webkit-mask-image: radial-gradient(ellipse at center, black 55%, transparent 78%); }
+  @keyframes heroFloat {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-14px); }
+  }
+</style>
+</head>
+<body class="bg-ink text-slate-200 font-sans antialiased overflow-x-hidden">
+
+<!-- ======= NAV ======= -->
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="#top" class="font-mono text-sm text-cyan-300 glow-cyan font-semibold">neural@guide ⌁</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-slate-400">
+      <a href="#catalog" class="hover:text-cyan-300 transition">Каталог</a>
+      <a href="#categories" class="hover:text-cyan-300 transition">Категории</a>
+      <a href="#blog" class="hover:text-cyan-300 transition">Блог</a>
+      <a href="#about" class="hover:text-cyan-300 transition">О проекте</a>
+      <a href="#contact" class="hover:text-cyan-300 transition">Контакты</a>
+    </nav>
+    <a href="#catalog" class="font-mono text-xs border border-cyan-400/30 rounded-md px-3 py-1.5 text-cyan-300 hover:bg-cyan-400/10 transition">открыть каталог</a>
+  </div>
+</header>
+
+<!-- ======= HERO ======= -->
+<section id="top" class="relative min-h-screen flex items-center grid-bg">
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-24 -right-24 w-[500px] h-[500px] rounded-full bg-violet-600/20 blur-3xl blob"></div>
+    <div class="absolute bottom-0 -left-32 w-[480px] h-[480px] rounded-full bg-cyan-500/15 blur-3xl blob" style="animation-delay:-7s"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto px-6 pt-8 pb-16 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-10 items-center">
+      <div>
+    <span class="font-mono text-xs text-emerald-400 status-dot inline-flex items-center gap-2 mb-8">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> живой каталог · 20+ сервисов · обновляется
+    </span>
+
+    <h1 class="text-5xl sm:text-7xl font-bold leading-[1.1] tracking-tight">
+      <span class="block">
+        <span class="shine-white inline-block" style="animation-delay:0s">Полная</span><span class="inline-block">&nbsp;</span><span class="shine-white inline-block" style="animation-delay:1.2s">карта</span>
+      </span>
+      <span class="block mt-1">
+        <span class="shine-grad inline-block" style="animation-delay:2.4s">нейросетей</span><span class="inline-block">&nbsp;</span><span class="shine-grad inline-block" style="animation-delay:3.6s">и</span><span class="inline-block">&nbsp;</span><span class="shine-grad inline-block" style="animation-delay:4.8s">ИИ-сервисов.</span>
+      </span>
+    </h1>
+
+    <p class="mt-7 max-w-2xl text-lg text-slate-400 leading-relaxed">
+      NeuralGuide — навигатор по миру искусственного интеллекта. Собираем <span class="text-slate-200 font-medium">все нейросети</span> —
+      от <span class="text-cyan-300 font-mono">ChatGPT</span> до самых маленьких API-сервисов вроде
+      <span class="text-cyan-300 font-mono">OpenRouter</span>. Подборки, обзоры, сравнения и гайды.
+    </p>
+
+    <div class="mt-9 flex flex-wrap gap-3">
+      <a href="#catalog" class="font-mono text-sm bg-cyan-400 text-ink px-5 py-3 rounded-md font-semibold hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(34,211,238,.25)]">
+        смотреть каталог →
+      </a>
+      <a href="#categories" class="font-mono text-sm border border-white/15 px-5 py-3 rounded-md text-slate-300 hover:border-cyan-400/50 hover:text-cyan-300 transition">
+        категории сервисов
+      </a>
+      <a href="#blog" class="font-mono text-sm border border-white/15 px-5 py-3 rounded-md text-slate-300 hover:border-violet-400/50 hover:text-violet-300 transition">
+        читать блог ↗
+      </a>
+    </div>
+
+    <div class="mt-16 flex items-center gap-3 font-mono text-xs text-slate-500">
+      <span>100+ сервисов в базе</span>
+      <span class="h-px w-20 bg-gradient-to-r from-cyan-400/50 to-transparent"></span>
+      <span>9 категорий</span>
+    </div>
+      </div>
+
+      <div class="hidden lg:flex justify-center items-center">
+        <img src="images/hero-ai.png" alt="Нейросеть" class="hero-img w-full max-w-[486px] drop-shadow-[0_0_54px_rgba(34,211,238,.42)]">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CATEGORIES ======= -->
+<section id="categories" class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <h2 class="font-mono text-sm uppercase tracking-[.2em] text-cyan-400 mb-3">01 · категории</h2>
+      <h3 class="text-3xl sm:text-4xl font-bold text-slate-100">Все ИИ-сервисы по направлениям</h3>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Текстовые -->
+      <a href="catalog/text.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-text.jpg" alt="Текстовые нейросети" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">💬 Текстовые модели</div>
+          <p class="mt-2 text-sm text-slate-400">ChatGPT, Claude, Gemini, DeepSeek — генерация и анализ текста, чат-боты, копирайтинг.</p>
+        </div>
+      </a>
+      <!-- Картинки -->
+      <a href="catalog/image.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-image.jpg" alt="Нейросети для генерации картинок" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🎨 Генерация картинок</div>
+          <p class="mt-2 text-sm text-slate-400">Midjourney, DALL-E, Flux, Stable Diffusion — изображения по текстовому описанию.</p>
+        </div>
+      </a>
+      <!-- Аудио -->
+      <a href="catalog/audio.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-audio.jpg" alt="Нейросети для аудио и музыки" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🎵 Аудио и музыка</div>
+          <p class="mt-2 text-sm text-slate-400">Suno, ElevenLabs, Udio — музыка, голоса, озвучка и синтез речи.</p>
+        </div>
+      </a>
+      <!-- Видео -->
+      <a href="catalog/video.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-video.jpg" alt="Нейросети для генерации видео" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🎬 Видео</div>
+          <p class="mt-2 text-sm text-slate-400">Sora, Runway, Kling — генерация и анимация видео по промпту.</p>
+        </div>
+      </a>
+      <!-- API -->
+      <a href="catalog/api.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-api.jpg" alt="API и платформы ИИ" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">⚙️ API и платформы</div>
+          <p class="mt-2 text-sm text-slate-400">OpenRouter, OpenAI API, x402 — доступ к моделям для разработчиков и интеграций.</p>
+        </div>
+      </a>
+      <!-- Разработчики -->
+      <a href="catalog/dev.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-dev.jpg" alt="ИИ-инструменты для разработчиков" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🔧 Для разработчиков</div>
+          <p class="mt-2 text-sm text-slate-400">Агентные фреймворки, MCP, инструменты для код-агентов и автоматизации.</p>
+        </div>
+      </a>
+      <!-- ИИ-агенты -->
+      <a href="catalog/agents.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-agents.jpg" alt="ИИ-агенты для автономных задач" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🤖 ИИ-агенты</div>
+          <p class="mt-2 text-sm text-slate-400">OpenCode, Hermes Agent, OpenClaw, Claude Code — софт для автономных задач, а не просто чаты.</p>
+        </div>
+      </a>
+      <!-- Локальные LLM -->
+      <a href="catalog/local.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-local.jpg" alt="Локальные LLM-серверы" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🖥️ Локальные LLM-серверы</div>
+          <p class="mt-2 text-sm text-slate-400">Ollama, LM Studio, llama.cpp, vLLM — запуск нейросетей на своём ПК, без облака и подписок.</p>
+        </div>
+      </a>
+      <!-- Веб-агенты -->
+      <a href="catalog/web-agents.html" class="reveal block bg-panel border border-white/5 rounded-xl overflow-hidden card-hover">
+        <img src="images/cat-web-agents.jpg" alt="Веб-агенты и облачные платформы" class="cat-img w-full" loading="lazy">
+        <div class="p-6">
+          <div class="font-mono text-cyan-300">🌐 Веб-агенты и облачные платформы</div>
+          <p class="mt-2 text-sm text-slate-400">ASI, Relevance AI, n8n, Manus — агенты, работающие в вебе и облаке через API.</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CATALOG ======= -->
+<section id="catalog" class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <h2 class="font-mono text-sm uppercase tracking-[.2em] text-cyan-400 mb-3">02 · каталог</h2>
+      <h3 class="text-3xl sm:text-4xl font-bold text-slate-100">Топ нейросетей для задач</h3>
+      <p class="mt-4 max-w-2xl text-slate-400 leading-relaxed">
+        Подборка лучших ИИ-сервисов по задаче. Каталог пополняется — скоро будет 50+ инструментов.
+      </p>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <!-- Пример карточки сервиса -->
+      <div class="reveal bg-panel border border-white/5 rounded-xl p-6 card-hover">
+        <div class="flex items-center justify-between">
+          <div class="font-mono text-cyan-300">ChatGPT</div>
+          <span class="text-xs font-mono text-emerald-400">текст</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-400">Флагманская модель OpenAI: генерация текста, анализ, код, чат-ассистент.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">чат</span>
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">текст</span>
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">API</span>
+        </div>
+      </div>
+      <!-- Пример карточки сервиса -->
+      <div class="reveal bg-panel border border-white/5 rounded-xl p-6 card-hover">
+        <div class="flex items-center justify-between">
+          <div class="font-mono text-cyan-300">Midjourney</div>
+          <span class="text-xs font-mono text-violet-400">картинки</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-400">Лидер генерации изображений — художественные и фотореалистичные картинки по промпту.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">арт</span>
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">фото</span>
+        </div>
+      </div>
+      <!-- Пример карточки сервиса -->
+      <div class="reveal bg-panel border border-white/5 rounded-xl p-6 card-hover">
+        <div class="flex items-center justify-between">
+          <div class="font-mono text-cyan-300">OpenRouter</div>
+          <span class="text-xs font-mono text-emerald-400">API</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-400">Единый доступ к сотням моделей по API — от Claude до DeepSeek через один ключ.</p>
+        <div class="mt-4 flex flex-wrap gap-2">
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">API</span>
+          <span class="text-xs font-mono border border-white/10 rounded px-2 py-1 text-slate-400">маршрутизация</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal mt-8 text-center">
+      <p class="text-sm text-slate-500">Каталог наполняется: ChatGPT, Claude, Gemini, DeepSeek, Midjourney, DALL-E, Flux, Suno, ElevenLabs, Sora, Runway, OpenRouter и ещё десятки сервисов.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======= BLOG ======= -->
+<section id="blog" class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal">
+      <h2 class="font-mono text-sm uppercase tracking-[.2em] text-violet-400 mb-3">03 · блог</h2>
+      <h3 class="text-3xl sm:text-4xl font-bold text-slate-100">Гайды по нейросетям</h3>
+    </div>
+
+    <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <a href="blog/blog1-text.html" class="reveal block bg-panel border border-white/5 rounded-xl p-6 card-hover">
+        <div class="text-xs font-mono text-violet-400">гайд</div>
+        <div class="mt-2 font-mono text-lg text-slate-100">Как выбрать нейросеть для текста</div>
+        <p class="mt-2 text-sm text-slate-400">ChatGPT, Claude, Gemini, DeepSeek — честное сравнение по задачам и ценам.</p>
+      </a>
+      <a href="blog/blog2-image.html" class="reveal block bg-panel border border-white/5 rounded-xl p-6 card-hover">
+        <div class="text-xs font-mono text-violet-400">подборка</div>
+        <div class="mt-2 font-mono text-lg text-slate-100">Топ-10 ИИ для картинок 2026</div>
+        <p class="mt-2 text-sm text-slate-400">Midjourney, Flux, DALL-E, Stable Diffusion — что выбрать и сколько стоит.</p>
+      </a>
+      <a href="blog/blog3-openrouter.html" class="reveal block bg-panel border border-white/5 rounded-xl p-6 card-hover">
+        <div class="text-xs font-mono text-violet-400">для dev</div>
+        <div class="mt-2 font-mono text-lg text-slate-100">OpenRouter для разработчиков</div>
+        <p class="mt-2 text-sm text-slate-400">Единый API ко всем LLM: ключ, первый запрос, тонкости оплаты из РФ.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ======= ABOUT ======= -->
+<section id="about" class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal bg-gradient-to-br from-violet-600/15 via-transparent to-cyan-500/10 border border-white/10 rounded-2xl p-10 sm:p-14">
+      <h2 class="text-3xl sm:text-4xl font-bold text-slate-100">Что такое NeuralGuide</h2>
+      <p class="mt-4 text-slate-400 max-w-2xl leading-relaxed">
+        NeuralGuide — навигатор по миру нейросетей и ИИ-сервисов. Мы собираем, сравниваем и описываем
+        инструменты искусственного интеллекта: от гигантов вроде ChatGPT до маленьких API-решений.
+        Цель — помочь вам быстро найти подходящую нейросеть под вашу задачу.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a href="#catalog" class="font-mono text-sm border border-white/15 px-5 py-3 rounded-md text-slate-200 hover:border-cyan-400/50 hover:text-cyan-300 transition">каталог ↗</a>
+        <a href="#blog" class="font-mono text-sm border border-white/15 px-5 py-3 rounded-md text-slate-200 hover:border-violet-400/50 hover:text-violet-300 transition">блог ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= CONTACT ======= -->
+<section id="contact" class="relative py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="reveal bg-panel border border-white/5 rounded-xl p-8">
+      <h2 class="text-3xl font-bold text-slate-100">Контакты</h2>
+      <p class="mt-4 text-slate-400 leading-relaxed">
+        Нашли ошибку в каталоге или хотите добавить свой ИИ-сервис? Напишите нам.
+      </p>
+      <div class="mt-6 flex flex-col sm:flex-row gap-3">
+        <a href="mailto:ivanbenks7@gmail.com" class="font-mono text-sm border border-white/15 px-5 py-3 rounded-md text-slate-200 hover:border-cyan-400/50 hover:text-cyan-300 transition">ivanbenks7@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======= FOOTER ======= -->
+<footer class="border-t border-white/5 py-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="font-mono text-xs text-slate-500">
+      <span class="text-cyan-300 glow-cyan">neural@guide</span> · построено в 2026 · каталог ИИ-сервисов
+    </div>
+    <div class="font-mono text-xs text-slate-600 flex flex-wrap gap-4">
+      <a href="about.html" class="hover:text-cyan-300 transition">О проекте</a>
+      <a href="contacts.html" class="hover:text-cyan-300 transition">Контакты</a>
+      <a href="privacy.html" class="hover:text-cyan-300 transition">Политика</a>
+      <a href="terms.html" class="hover:text-cyan-300 transition">Соглашение</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+</body>
+</html>

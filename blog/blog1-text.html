@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://neuralguide.ru/blog/blog1-text.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NeuralGuide">
+<meta property="og:title" content="Как выбрать нейросеть для текста — ChatGPT, Claude или Gemini | NeuralGuide">
+<meta property="og:description" content="Разбираем, как выбрать нейросеть для работы с текстом: ChatGPT, Claude, Gemini, DeepSeek, Mistral. Сравнение по задачам, цены и что реально подходит именно вам.">
+<meta property="og:url" content="https://neuralguide.ru/blog/blog1-text.html">
+<meta property="og:image" content="https://neuralguide.ru/images/cat-text.jpg">
+<meta property="og:image:width" content="1168">
+<meta property="og:image:height" content="784">
+<meta property="og:locale" content="ru_RU">
+<meta property="article:published_time" content="2026-08-17T10:00:00+03:00">
+<meta property="article:author" content="NeuralGuide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Как выбрать нейросеть для текста — ChatGPT, Claude или Gemini | NeuralGuide">
+<meta name="twitter:description" content="Разбираем, как выбрать нейросеть для работы с текстом: ChatGPT, Claude, Gemini, DeepSeek, Mistral. Сравнение по задачам, цены и что реально подходит именно вам.">
+<meta name="twitter:image" content="https://neuralguide.ru/images/cat-text.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как выбрать нейросеть для текста — ChatGPT, Claude или Gemini | NeuralGuide</title>
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon/favicon-256.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16.png">
+<link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon/favicon-256.png">
+<link rel="manifest" href="../favicon/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="Разбираем, как выбрать нейросеть для работы с текстом: ChatGPT, Claude, Gemini, DeepSeek, Mistral. Сравнение по задачам, цены и что реально подходит именно вам.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.7/dist/forms.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { sans:['Space Grotesk','ui-sans-serif','system-ui','sans-serif'], mono:['JetBrains Mono','monospace'] }, colors: { ink:'#0a0a0f', panel:'#12121a' } } } }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0f; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(139,92,246,.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(139,92,246,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .glow-cyan { text-shadow: 0 0 24px rgba(34,211,238,.45); }
+  .glow-violet { text-shadow: 0 0 30px rgba(139,92,246,.5); }
+  ::selection { background: rgba(34,211,238,.3); }
+  .article h2 { font-size:1.6rem; font-weight:700; color:#f1f5f9; margin:2.6rem 0 .9rem; }
+  .article h3 { font-size:1.15rem; font-weight:600; color:#e2e8f0; margin-top:1.8rem; margin-bottom:.5rem; }
+  .article p { color:#9aa7b8; line-height:1.8; margin:.8rem 0; }
+  .article li { color:#9aa7b8; line-height:1.7; margin:.4rem 0; }
+  .article strong { color:#e2e8f0; font-weight:600; }
+  .article a { color:#22d3ee; }
+  .article a:hover { text-decoration: underline; }
+  .article code { font-family:'JetBrains Mono',monospace; color:#67e8f9; background:rgba(34,211,238,.1); padding:.1rem .3rem; border-radius:.25rem; font-size:.9em; }
+  .toc-card { border-left:3px solid rgba(139,92,246,.5); }
+  .tipb { border-left:3px solid rgba(34,211,238,.5); background:rgba(34,211,238,.05); }
+</style>
+</head>
+<body class="bg-ink text-slate-200 font-sans antialiased overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="font-mono text-sm text-cyan-300 glow-cyan font-semibold">neural@guide ⌁</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-slate-400">
+      <a href="../index.html#catalog" class="hover:text-cyan-300 transition">Каталог</a>
+      <a href="../index.html#categories" class="hover:text-cyan-300 transition">Категории</a>
+      <a href="../index.html#blog" class="hover:text-cyan-300 transition">Блог</a>
+      <a href="../about.html" class="hover:text-cyan-300 transition">О проекте</a>
+    </nav>
+    <a href="../index.html" class="font-mono text-xs border border-cyan-400/30 rounded-md px-3 py-1.5 text-cyan-300 hover:bg-cyan-400/10 transition">← на главную</a>
+  </div>
+</header>
+
+<section class="relative pt-32 pb-12 grid-bg">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="font-mono text-xs text-violet-400 mb-4">блог · гайд по выбору нейросети</div>
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-100 leading-tight">Как выбрать <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400 glow-violet">нейросеть для текста</span></h1>
+    <p class="mt-5 text-slate-400 text-lg leading-relaxed">ChatGPT, Claude, Gemini, DeepSeek, Mistral — разбираем, чем они реально отличаются и какой брать под вашу задачу. Без маркетинга, по делу.</p>
+    <div class="mt-6 font-mono text-xs text-slate-500">NeuralGuide · обновлено 2026 · чтение ~7 мин</div>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="max-w-3xl mx-auto px-6 article">
+
+    <div class="bg-panel border border-white/5 rounded-xl p-6 toc-card mb-8">
+      <div class="font-mono text-xs uppercase tracking-widest text-violet-300 mb-2">содержание</div>
+      <ul class="list-none space-y-1 text-sm">
+        <li>1 · Сначала определитесь с задачей</li>
+        <li>2 · Ключевые модели и их сильные стороны</li>
+        <li>3 · Сравнительная таблица</li>
+        <li>4 · Сколько это стоит</li>
+        <li>5 · Что выбрать под конкретные сценарии</li>
+        <li>6 · Как протестировать перед покупкой</li>
+      </ul>
+    </div>
+
+    <h2>1 · Сначала определитесь с задачей</h2>
+    <p>Главная ошибка — начинать с вопроса «какая нейросеть лучше». Правильный вопрос: <strong>под какое именно использование вы выбираете?</strong> Чат-бот для повседневных вопросов, генерация статей, написание кода, анализ документов или перевод — у каждой модели своя специфика, и цена соответствует.</p>
+    <p>Разные задачи требуют разных моделей. Универсального «лучшего на всё» нет: лидер в коде часто уступает в креативе, а дешёвая быстрая модель может не справиться с длинной аналитикой. Поэтому сначала — сценарий, потом — рейтинг.</p>
+
+    <h2>2 · Ключевые модели и их сильные стороны</h2>
+    <h3>ChatGPT (OpenAI)</h3>
+    <p>Самый известный и сбалансированный вариант. Отлично справляется с широким спектром задач: от повседневных вопросов и перевода до генерации структурированных текстов и работы с кодом. Огромная экосистема, многочисленные плагины и GPTs делают его самым универсальным входом в мир LLM. Для 80% пользователей — разумный выбор по умолчанию.</p>
+
+    <h3>Claude (Anthropic)</h3>
+    <p>Регулярно лидирует в бенчмарках генерации кода и длинных аналитических текстов. Отличается очень большим контекстом «из коробки» и режимом длительного мышления (extended thinking), благодаря которому даёт продуманные, глубокие ответы на сложные вопросы. Особенно силён у разработчиков и людей, работающих с объёмными документами.</p>
+
+    <h3>Gemini (Google)</h3>
+    <p>Мультимодальная модель Google: сразу понимает текст, изображения и аудио, не требуя отдельных сервисов. Умеет быстро проходить огромные контексты и хорошо работает с целыми документами и репозиториями. Через Google AI Studio можно бесплатно тестировать — удобно для экспериментов.</p>
+
+    <h3>DeepSeek</h3>
+    <p>Китайская модель, ставшая сенсацией из-за очень низкой цены при высокой производительности. Особенно популярна у тех, кто платит за API и хочет получить максимум за минимум бюджета. Хорошо справляется с текстом и кодом, хотя интерфейсы и экосистема беднее, чем у западных гигантов.</p>
+
+    <h3>Mistral</h3>
+    <p>Европейский игрок с открытыми весами многих моделей. Эффективен и быстр, часть моделей можно запускать локально бесплатно — важно для приватности и экономии. Европейский акцент и открытость привлекают разработчиков и компании, которым важна независимость от США.</p>
+
+    <h2>3 · Сравнительная таблица</h2>
+    <p>Если коротко, по ключевым направлениям:</p>
+    <div class="bg-panel border border-white/10 rounded-xl p-5 my-4 overflow-x-auto">
+      <table class="w-full text-sm text-left">
+        <thead class="text-slate-400">
+          <tr><th class="pb-2">Задача</th><th class="pb-2">Фаворит</th></tr>
+        </thead>
+        <tbody class="text-slate-300">
+          <tr class="border-t border-white/5"><td class="py-2">Универсальный выбор «на всё»</td><td class="py-2"><a href="../catalog/text.html#chatgpt">ChatGPT</a></td></tr>
+          <tr class="border-t border-white/5"><td class="py-2">Код и аналитика</td><td class="py-2">Claude</td></tr>
+          <tr class="border-t border-white/5"><td class="py-2">Текст + картинки + аудио</td><td class="py-2">Gemini</td></tr>
+          <tr class="border-t border-white/5"><td class="py-2">Максимум за минимум денег (API)</td><td class="py-2">DeepSeek</td></tr>
+          <tr class="border-t border-white/5"><td class="py-2">Открытые модели / локально</td><td class="py-2">Mistral</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>4 · Сколько это стоит</h2>
+    <p>Цены говорят о позиционировании лучше любых обещаний:</p>
+    <div class="bg-panel border border-white/10 rounded-xl p-5 my-4">
+      <ul class="list-none space-y-2 text-sm">
+        <li><strong>ChatGPT</strong> — бесплатный уровень + Plus ~$20/мес.</li>
+        <li><strong>Claude</strong> — Pro ~$20/мес, сильные модели дороже в API.</li>
+        <li><strong>Gemini</strong> — много бесплатного через AI Studio, платные уровни по мере роста.</li>
+        <li><strong>DeepSeek</strong> — один из самых дешёвых входов в API.</li>
+        <li><strong>Mistral</strong> — конкурентные цены + бесплатные открытые веса.</li>
+      </ul>
+    </div>
+
+    <div class="tipb rounded-lg p-4 my-5">
+      <div class="font-mono text-xs text-cyan-300">💡 практический совет</div>
+      <p class="mt-2 text-sm">Из РФ подписки и API чаще всего требуют зарубежную карту или посредников. Если это проблема — смотрите в сторону <a href="../catalog/text.html">DeepSeek через OpenRouter</a> (гибкая оплата) или open-моделей, например <a href="../catalog/dev.html">Ollama для локального запуска</a>.</p>
+    </div>
+
+    <h2>5 · Что выбрать под конкретные сценарии</h2>
+    <p><strong>Вам для работы с текстом, соцсетями и мелкими задачами</strong> — ChatGPT. Понятный интерфейс, широкая поддержка, надёжность.</p>
+    <p><strong>Вы разработчик или анализируете длинные документы</strong> — Claude. Глубина рассуждений и длина контекста дадут реальную выгоду, особенно с кодом.</p>
+    <p><strong>Нужно быстро обрабатывать и текст, и картинки, и документы</strong> — Gemini. Один инструмент на многие типы данных.</p>
+    <p><strong>Считаете каждый рубль и зовёте модели через API</strong> — DeepSeek. Дёшево и достойно по качеству.</p>
+    <p><strong>Важна приватность или независимость от США</strong> — Mistral или любая открытая модель, запущенная локально.</p>
+
+    <h2>6 · Как протестировать перед покупкой</h2>
+    <p>Никогда не выбирайте по рекламе — протестируйте сами. Задайте каждой бесплатной версии одну и ту же реальную задачу: напишите черновик статьи на вашу тему, попросите переделать абзац, разобрать сложный вопрос. Сравните не «вики-ответы», а то, насколько результат полезен именно вам.</p>
+    <p>Хороший маркер качества — способность модели признаваться в незнании и задавать уточняющие вопросы, а не выдавать уверенную чушь. Если модель выдумывает факты и не ловит ваши правки — это повод присмотреться к другой.</p>
+
+    <div class="mt-10 bg-gradient-to-br from-violet-600/15 via-transparent to-cyan-500/10 border border-white/10 rounded-2xl p-8">
+      <h2 class="mt-0 text-2xl font-bold text-slate-100">Итог</h2>
+      <p>Универсальной «самой лучшей» нейросети нет — есть подходящая под задачу. Начните с бесплатных тестов, определите свой главный сценарий и берите модель, которая закрывает именно его. Когда поймёте, что нужно ещё дешевле или локально — переходите на DeepSeek, Mistral и открытые модели.</p>
+      <p class="mt-2">Все сервисы для сравнения мы собрали в разделе <a href="../catalog/text.html">Текстовые модели</a> и <a href="../index.html#catalog">каталоге</a>.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 py-10 mt-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="font-mono text-xs text-slate-500">
+      <span class="text-cyan-300 glow-cyan">neural@guide</span> · построено в 2026 · каталог ИИ-сервисов
+    </div>
+    <div class="font-mono text-xs text-slate-600 flex flex-wrap gap-4">
+      <a href="../about.html" class="hover:text-cyan-300 transition">О проекте</a>
+      <a href="../contacts.html" class="hover:text-cyan-300 transition">Контакты</a>
+      <a href="../privacy.html" class="hover:text-cyan-300 transition">Политика</a>
+      <a href="../terms.html" class="hover:text-cyan-300 transition">Соглашение</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

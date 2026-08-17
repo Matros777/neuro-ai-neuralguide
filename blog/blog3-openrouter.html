@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://neuralguide.ru/blog/blog3-openrouter.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="NeuralGuide">
+<meta property="og:title" content="OpenRouter для разработчиков — единый API для всех моделей | NeuralGuide">
+<meta property="og:description" content="Гайд по OpenRouter для разработчиков: единый API ко всем LLM, установка ключа, вызов моделей, маршрутизация и тонкости оплаты из РФ.">
+<meta property="og:url" content="https://neuralguide.ru/blog/blog3-openrouter.html">
+<meta property="og:image" content="https://neuralguide.ru/images/cat-api.jpg">
+<meta property="og:image:width" content="1168">
+<meta property="og:image:height" content="784">
+<meta property="og:locale" content="ru_RU">
+<meta property="article:published_time" content="2026-08-17T10:00:00+03:00">
+<meta property="article:author" content="NeuralGuide">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OpenRouter для разработчиков — единый API для всех моделей | NeuralGuide">
+<meta name="twitter:description" content="Гайд по OpenRouter для разработчиков: единый API ко всем LLM, установка ключа, вызов моделей, маршрутизация и тонкости оплаты из РФ.">
+<meta name="twitter:image" content="https://neuralguide.ru/images/cat-api.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OpenRouter для разработчиков — единый API для всех моделей | NeuralGuide</title>
+<link rel="icon" type="image/png" sizes="512x512" href="../favicon/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="../favicon/favicon-256.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16.png">
+<link rel="icon" type="image/x-icon" href="../favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="../favicon/favicon-256.png">
+<link rel="manifest" href="../favicon/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="Гайд по OpenRouter для разработчиков: единый API ко всем LLM, установка ключа, вызов моделей, маршрутизация и тонкости оплаты из РФ.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.7/dist/forms.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { sans:['Space Grotesk','ui-sans-serif','system-ui','sans-serif'], mono:['JetBrains Mono','monospace'] }, colors: { ink:'#0a0a0f', panel:'#12121a' } } } }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0f; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(139,92,246,.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(139,92,246,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .glow-cyan { text-shadow: 0 0 24px rgba(34,211,238,.45); }
+  .glow-violet { text-shadow: 0 0 30px rgba(139,92,246,.5); }
+  ::selection { background: rgba(34,211,238,.3); }
+  .article h2 { font-size:1.6rem; font-weight:700; color:#f1f5f9; margin:2.6rem 0 .9rem; }
+  .article h3 { font-size:1.15rem; font-weight:600; color:#e2e8f0; margin-top:1.8rem; margin-bottom:.5rem; }
+  .article p { color:#9aa7b8; line-height:1.8; margin:.8rem 0; }
+  .article li { color:#9aa7b8; line-height:1.7; margin:.4rem 0; }
+  .article strong { color:#e2e8f0; font-weight:600; }
+  .article a { color:#22d3ee; }
+  .article a:hover { text-decoration: underline; }
+  .article code { font-family:'JetBrains Mono',monospace; color:#67e8f9; background:rgba(34,211,238,.1); padding:.1rem .3rem; border-radius:.25rem; font-size:.9em; }
+  .pre { font-family:'JetBrains Mono',monospace; font-size:.85rem; color:#e2e8f0; background:#0c0c12; border:1px solid rgba(255,255,255,.08); border-radius:.6rem; padding:1rem; overflow-x:auto; line-height:1.6; }
+  .toc-card { border-left:3px solid rgba(139,92,246,.5); }
+  .tipb { border-left:3px solid rgba(34,211,238,.5); background:rgba(34,211,238,.05); }
+</style>
+</head>
+<body class="bg-ink text-slate-200 font-sans antialiased overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="../index.html" class="font-mono text-sm text-cyan-300 glow-cyan font-semibold">neural@guide ⌁</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-slate-400">
+      <a href="../index.html#catalog" class="hover:text-cyan-300 transition">Каталог</a>
+      <a href="../index.html#categories" class="hover:text-cyan-300 transition">Категории</a>
+      <a href="../index.html#blog" class="hover:text-cyan-300 transition">Блог</a>
+      <a href="../about.html" class="hover:text-cyan-300 transition">О проекте</a>
+    </nav>
+    <a href="../index.html" class="font-mono text-xs border border-cyan-400/30 rounded-md px-3 py-1.5 text-cyan-300 hover:bg-cyan-400/10 transition">← на главную</a>
+  </div>
+</header>
+
+<section class="relative pt-32 pb-12 grid-bg">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="font-mono text-xs text-violet-400 mb-4">блог · гайд для разработчиков</div>
+    <h1 class="text-4xl sm:text-5xl font-bold text-slate-100 leading-tight">OpenRouter для <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400 glow-violet">разработчиков</span></h1>
+    <p class="mt-5 text-slate-400 text-lg leading-relaxed">Единый API ко всем LLM через один ключ: как подключить, вызвать модель и обойти типовые подводные камни оплаты.</p>
+    <div class="mt-6 font-mono text-xs text-slate-500">NeuralGuide · обновлено 2026 · чтение ~8 мин</div>
+  </div>
+</section>
+
+<section class="py-12">
+  <div class="max-w-3xl mx-auto px-6 article">
+
+    <div class="bg-panel border border-white/5 rounded-xl p-6 toc-card mb-8">
+      <div class="font-mono text-xs uppercase tracking-widest text-violet-300 mb-2">содержание</div>
+      <ul class="list-none space-y-1 text-sm">
+        <li>Что такое OpenRouter и зачем он</li>
+        <li>Как получить ключ и пополнить баланс</li>
+        <li>Первый запрос к модели</li>
+        <li>Работа с несколькими моделями</li>
+        <li>Тонкости для РФ: оплата и доступ</li>
+        <li>Резюме</li>
+      </ul>
+    </div>
+
+    <h2>Что такое OpenRouter и зачем он</h2>
+    <p>OpenRouter — универсальный шлюз, который даёт доступ к сотням LLM (OpenAI, Anthropic, Google, Meta Llama, DeepSeek, Mistral и другие) через <strong>один API-ключ и один формат запросов</strong>. Разработчику не нужно заводить отдельные аккаунты и платить в каждом сервисе: завёл один ключ, пополнил баланс — и переключаешь модели в коде, меняя лишь название модели в запросе.</p>
+    <p>Это экономит время на интеграции и упрощает сравнение: чтобы узнать, какая модель лучше под вашу задачу, достаточно прогнать один и тот же промпт по разным «флагам», не трогая остальной код.</p>
+
+    <h2>Как получить ключ и пополнить баланс</h2>
+    <ol class="list-decimal list-inside space-y-2 ml-1">
+      <li>Зарегистрируйтесь на <a href="https://openrouter.ai" target="_blank" rel="noopener">openrouter.ai</a>.</li>
+      <li>Перейдите в раздел <strong>Keys</strong> и создайте новый API-ключ.</li>
+      <li>Пополните баланс — способы оплаты могут отличаться, актуальные проверяйте на странице пополнения (часто доступны карты и крипто).</li>
+      <li>Сохраните ключ в переменную окружения — не хардкодьте его в код и тем более не коммитьте в публичный репозиторий.</li>
+    </ol>
+    <div class="pre"># безопасно храним ключ
+export OPENROUTER_API_KEY=sk-or-v1-...</div>
+
+    <h2>Первый запрос к модели</h2>
+    <p>OpenRouter совместим с OpenAI-форматом, поэтому вызов простейший. Пример через <code>curl</code>:</p>
+    <div class="pre">curl https://openrouter.ai/api/v1/chat/completions \
+  -H "Authorization: Bearer $OPENROUTER_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "openai/gpt-4o-mini",
+    "messages": [{"role":"user","content":"Привет, кто ты?"}]
+  }'</div>
+    <p>В ответе получите JSON со стандартной структурой: <code>choices[0].message.content</code> — текст ответа, а метаданные использования (<code>usage</code>) показывают, сколько токенов потрачено.</p>
+
+    <h2>Работа с несколькими моделями</h2>
+    <p>Красота OpenRouter в том, что код почти не меняется — меняется только значение поля <code>model</code>:</p>
+    <div class="pre"># примеры доступных моделей (точные имена смотрите на сайте)
+anthropic/claude-sonnet-4      # Claude от Anthropic
+google/gemini-2.0-flash        # Gemini от Google
+meta-llama/llama-3.3-70b       # Llama от Meta
+deepseek/deepseek-chat         # DeepSeek
+openai/gpt-4o-mini             # OpenAI</div>
+    <p>Имя модели строится по логике <code>провайдер/модель</code>. Благодаря единому формату удобно устраивать A/B-сравнение моделей и автоматически направлять дешёвые вещи на быструю модель, а сложные — на дорогую, не плодя интеграции.</p>
+
+    <div class="tipb rounded-lg p-4 my-5">
+      <div class="font-mono text-xs text-cyan-300">💡 маршрутизация</div>
+      <p class="mt-2 text-sm">OpenRouter умеет маршрутизировать запросы между несколькими моделями за свои средства или по вашим правилам — удобно для баланса скорость/цена. Подробнее — в документации сервиса.</p>
+    </div>
+
+    <h2>Тонкости для РФ: оплата и доступ</h2>
+    <p>Для многих разработчиков из РФ OpenRouter — самый удобный вход в LLM, потому что заводить отдельные зарубежные карты на каждый сервис не приходится. Тем не менее честно обозначим нюансы:</p>
+    <ul class="list-none ml-1 space-y-2">
+      <li><strong>Оплата</strong> — способы пополнения могут требовать зарубежную карту или крипто. Проверяйте актуальные методы на странице баланса перед покупкой. Для кантри-редистриктов часть способов может быть недоступна.</li>
+      <li><strong>Доступ к панели</strong> — обычно работает напрямую; если страница не отвечает, возможен вариант с VPN.</li>
+      <li><strong>Бесплатные модели</strong> — ряд моделей доступен с лимитами бесплатно, отлично для тестов и прототипов.</li>
+      <li><strong>Прозрачные цены</strong> — стоимость указана за миллион токенов, легко прикинуть бюджет.</li>
+    </ul>
+
+    <div class="tipb rounded-lg p-4 my-5">
+      <div class="font-mono text-xs text-cyan-300">💡 совет</div>
+      <p class="mt-2 text-sm">Начните с бесплатных моделей и малого баланса, чтобы понять реальную цену ваших запросов. Установите лимиты на ключ, чтобы случайный цикл не сжёг баланс.</p>
+    </div>
+
+    <h2>Резюме</h2>
+    <p>OpenRouter убирает главную боль разработчика — разрозненные аккаунты и платёжки разных сервисов. Один ключ, один формат, сотни моделей — от бюджетного DeepSeek до топового Claude. Это быстрый способ прототипировать, сравнивать и запускать LLM-функции в продакшн без глубинной переделки кода.</p>
+    <p class="mt-2">Полное описание, регистрация и тонкости оплаты — в разделе <a href="../catalog/api.html">API и платформы</a> каталога.</p>
+
+    <div class="mt-8 bg-gradient-to-br from-violet-600/15 via-transparent to-cyan-500/10 border border-white/10 rounded-2xl p-8">
+      <h2 class="mt-0 text-2xl font-bold text-slate-100">Связанные материалы</h2>
+      <ul class="list-none space-y-1 mt-2">
+        <li><a href="../catalog/api.html">Каталог API-платформ</a> — OpenRouter, OpenAI, Anthropic, Hugging Face, Google AI Studio</li>
+        <li><a href="../catalog/dev.html">Инструменты для разработчиков</a> — LangChain, Ollama, MCP</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 py-10 mt-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="font-mono text-xs text-slate-500">
+      <span class="text-cyan-300 glow-cyan">neural@guide</span> · построено в 2026 · каталог ИИ-сервисов
+    </div>
+    <div class="font-mono text-xs text-slate-600 flex flex-wrap gap-4">
+      <a href="../about.html" class="hover:text-cyan-300 transition">О проекте</a>
+      <a href="../contacts.html" class="hover:text-cyan-300 transition">Контакты</a>
+      <a href="../privacy.html" class="hover:text-cyan-300 transition">Политика</a>
+      <a href="../terms.html" class="hover:text-cyan-300 transition">Соглашение</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<link rel="canonical" href="https://neuralguide.ru/about.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="NeuralGuide">
+<meta property="og:title" content="О проекте — NeuralGuide">
+<meta property="og:description" content="NeuralGuide — независимый каталог нейросетей и ИИ-сервисов: обзоры, сравнения и гайды по применению искусственного интеллекта.">
+<meta property="og:url" content="https://neuralguide.ru/about.html">
+<meta property="og:image" content="https://neuralguide.ru/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="ru_RU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="О проекте — NeuralGuide">
+<meta name="twitter:description" content="NeuralGuide — независимый каталог нейросетей и ИИ-сервисов: обзоры, сравнения и гайды по применению искусственного интеллекта.">
+<meta name="twitter:image" content="https://neuralguide.ru/images/og-cover.jpg">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>О проекте — NeuralGuide</title>
+<link rel="icon" type="image/png" sizes="512x512" href="favicon/favicon-512.png">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon/favicon-256.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16.png">
+<link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-256.png">
+<link rel="manifest" href="favicon/site.webmanifest">
+<meta name="theme-color" content="#0a0a0f">
+<meta name="description" content="NeuralGuide — независимый каталог нейросетей и ИИ-сервисов: обзоры, сравнения и гайды по применению искусственного интеллекта.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/forms@0.5.7/dist/forms.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script>
+tailwind.config = { theme: { extend: { fontFamily: { sans:['Space Grotesk','ui-sans-serif','system-ui','sans-serif'], mono:['JetBrains Mono','monospace'] }, colors: { ink:'#0a0a0f', panel:'#12121a' } } } }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background: #0a0a0f; }
+  .grid-bg {
+    background-image: linear-gradient(rgba(139,92,246,.06) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(139,92,246,.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .glow-cyan { text-shadow: 0 0 24px rgba(34,211,238,.45); }
+  .glow-violet { text-shadow: 0 0 30px rgba(139,92,246,.5); }
+  ::selection { background: rgba(34,211,238,.3); }
+  .legal h2 { font-size:1.4rem; font-weight:700; color:#f1f5f9; margin:2.2rem 0 .8rem; }
+  .legal p { color:#94a3b8; line-height:1.75; margin:.7rem 0; }
+  .legal ul { list-style:none; margin:.6rem 0; padding:0; }
+  .legal li { padding-left:1.4rem; position:relative; margin:.45rem 0; color:#94a3b8; line-height:1.6; }
+  .legal li::before { content:"—"; position:absolute; left:0; color:#22d3ee; }
+</style>
+</head>
+<body class="bg-ink text-slate-200 font-sans antialiased overflow-x-hidden">
+
+<header class="fixed top-0 w-full z-50 backdrop-blur-md bg-ink/70 border-b border-white/5">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="index.html" class="font-mono text-sm text-cyan-300 glow-cyan font-semibold">neural@guide ⌁</a>
+    <nav class="hidden md:flex items-center gap-7 text-sm text-slate-400">
+      <a href="index.html#catalog" class="hover:text-cyan-300 transition">Каталог</a>
+      <a href="index.html#categories" class="hover:text-cyan-300 transition">Категории</a>
+      <a href="index.html#blog" class="hover:text-cyan-300 transition">Блог</a>
+      <a href="about.html" class="hover:text-cyan-300 transition">О проекте</a>
+      <a href="contacts.html" class="hover:text-cyan-300 transition">Контакты</a>
+    </nav>
+    <a href="index.html#catalog" class="font-mono text-xs border border-cyan-400/30 rounded-md px-3 py-1.5 text-cyan-300 hover:bg-cyan-400/10 transition">открыть каталог</a>
+  </div>
+</header>
+
+<section class="relative pt-32 pb-16 grid-bg">
+  <div class="max-w-3xl mx-auto px-6">
+    <span class="font-mono text-xs text-cyan-400">О проекте</span>
+    <h1 class="mt-4 text-4xl sm:text-5xl font-bold text-slate-100 leading-tight"><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-violet-400 glow-violet">НейроГид</span> — полная карта нейросетей и ИИ-сервисов</h1>
+  </div>
+</section>
+
+<section class="py-14">
+  <div class="max-w-3xl mx-auto px-6 legal">
+    <p>НейроГид — это независимый информационный каталог, который помогает разобраться в мире нейросетей: от генераторов текста и изображений до API и инструментов для разработчиков.</p>
+    <p>Мы собираем в одном месте лучшие ИИ-сервисы, объясняем простым языком, зачем каждый из них нужен, как им пользоваться и сколько это стоит. Никакой сложной документации — только практичные описания и полезные детали, которые реально экономят время.</p>
+    <h2>Что делает НейроГид</h2>
+    <ul>
+      <li>Отбирает проверенные нейросети и ИИ-инструменты по категориям: текст, изображения, аудио, видео, API, разработка.</li>
+      <li>Публикует понятные разборы, гайды и статьи о применении ИИ.</li>
+      <li>Помогает сравнить сервисы по цене и возможностям.</li>
+    </ul>
+    <h2>Важно знать</h2>
+    <p>НейроГид — справочный проект, мы не являемся официальными представителями сервисов, упомянутых в каталоге. Все ссылки ведут на официальные сайты производителей. Информация носит ознакомительный характер и не является публичной офертой.</p>
+    <p>По вопросам сотрудничества и обратной связи: <a class="text-cyan-300 hover:underline" href="mailto:ivanbenks7@gmail.com">ivanbenks7@gmail.com</a></p>
+  </div>
+</section>
+
+<footer class="border-t border-white/5 py-10 mt-10">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="font-mono text-xs text-slate-500">
+      <span class="text-cyan-300 glow-cyan">neural@guide</span> · построено в 2026 · каталог ИИ-сервисов
+    </div>
+    <div class="font-mono text-xs text-slate-600 flex flex-wrap gap-4">
+      <a href="about.html" class="hover:text-cyan-300 transition">О проекте</a>
+      <a href="contacts.html" class="hover:text-cyan-300 transition">Контакты</a>
+      <a href="privacy.html" class="hover:text-cyan-300 transition">Политика</a>
+      <a href="terms.html" class="hover:text-cyan-300 transition">Соглашение</a>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
