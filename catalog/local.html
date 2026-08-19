@@ -173,14 +173,21 @@ tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-
         </ul>
       </div>
 
-      <!-- CONFIG PLACEHOLDER -->
+            <!-- CONFIG -- WORKING -->
       <div class="mt-6">
-        <div class="cfg-label">⚙ конфиг · вставим рабочий конфиг позже</div>
-        <pre class="cfg-block"><code><span class="c"># запуск модели</span>
-<span class="k">$</span> ollama run llama3.2
+        <div class="cfg-label">⚙ установка · минимальная рабочая (Ollama)</div>
+        <pre class="cfg-block"><code>
+<span class="c"># установка сервера (Linux/macOS)</span>
+<span class="k">$</span><span class=""> curl -fsSL https://ollama.com/install.sh | sh</span>
 
-<span class="c"># API endpoint</span>
-<span class="k">http</span>://localhost:<span class="n">11434</span>/v1/chat/completions</code></pre>
+<span class="c"># скачать и запустить модель одной командой</span>
+<span class="k">$</span><span class=""> ollama run llama3.2</span>
+
+<span class="c"># проверка OpenAI-совместимого API</span>
+<span class="k">$</span><span class=""> curl http://localhost:</span><span class="n">11434</span><span class="">/v1/chat/completions \</span>
+<span class="">  -H "Content-Type: application/json" \</span>
+<span class="">  -d '{"model":"llama3.2","messages":[{"role":"user","content":"hi"}]}'</span>
+        </code></pre>
       </div>
     </div>
 
@@ -225,13 +232,19 @@ tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-
         </ul>
       </div>
 
-      <!-- CONFIG PLACEHOLDER -->
+            <!-- CONFIG -- WORKING -->
       <div class="mt-6">
-        <div class="cfg-label">⚙ конфиг · вставим рабочий конфиг позже</div>
-        <pre class="cfg-block"><code><span class="c"># lm studio server (включить в настройках)</span>
-<span class="k">port</span>: <span class="n">1234</span>
-<span class="k">api</span>: <span class="s">"openai-compatible"</span>
-<span class="k">model</span>: <span class="s">"qwen2.5-7b-instruct"</span></code></pre>
+        <div class="cfg-label">⚙ установка · минимальная рабочая (LM Studio)</div>
+        <pre class="cfg-block"><code>
+<span class="c"># LM Studio -> вкладка Developer -> Local Server</span>
+<span class="c"># включить сервер, выбрать модель, задать порт</span>
+<span class="k">port</span><span class="">: </span><span class="n">1234</span>
+<span class="k">api</span><span class="">: </span><span class="s">"openai-compatible"</span>
+<span class="k">model</span><span class="">: </span><span class="s">"qwen2.5-7b-instruct"</span>
+
+<span class="c"># подключение приложений</span>
+<span class="">http://localhost:</span><span class="n">1234</span><span class="">/v1/chat/completions</span>
+        </code></pre>
       </div>
     </div>
 
@@ -275,12 +288,21 @@ tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-
         </ul>
       </div>
 
-      <!-- CONFIG PLACEHOLDER -->
+            <!-- CONFIG -- WORKING -->
       <div class="mt-6">
-        <div class="cfg-label">⚙ конфиг · вставим рабочий конфиг позже</div>
-        <pre class="cfg-block"><code><span class="c"># запуск llama-server</span>
-<span class="k">$</span> llama-server -m <span class="s">"model.gguf"</span> --port <span class="n">8080</span>
-<span class="c"># API: http://localhost:8080/v1/chat/completions</span></code></pre>
+        <div class="cfg-label">⚙ установка · минимальная рабочая (llama.cpp)</div>
+        <pre class="cfg-block"><code>
+<span class="c"># сборка из исходников (Linux/macOS)</span>
+<span class="k">$</span><span class=""> make -C llama.cpp -j</span>
+
+<span class="c"># запуск llama-server с моделью в GGUF</span>
+<span class="k">$</span><span class=""> ./llama-server -m </span><span class="s">"model.gguf"</span><span class=""> \</span>
+<span class="">  --port </span><span class="n">8080</span><span class=""> --ctx-size </span><span class="n">4096</span>
+
+<span class="c"># проверка API</span>
+<span class="k">$</span><span class=""> curl http://localhost:</span><span class="n">8080</span><span class="">/v1/chat/completions \</span>
+<span class="">  -d '{"model":"model","messages":[{"role":"user","content":"hi"}]}'</span>
+        </code></pre>
       </div>
     </div>
 
@@ -324,12 +346,20 @@ tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-
         </ul>
       </div>
 
-      <!-- CONFIG PLACEHOLDER -->
+            <!-- CONFIG -- WORKING -->
       <div class="mt-6">
-        <div class="cfg-label">⚙ конфиг · вставим рабочий конфиг позже</div>
-        <pre class="cfg-block"><code><span class="c"># запуск vllm</span>
-<span class="k">$</span> vllm serve <span class="s">"meta-llama/Llama-3.1-8B"</span> --port <span class="n">8000</span>
-<span class="c"># API: http://localhost:8000/v1/chat/completions</span></code></pre>
+        <div class="cfg-label">⚙ установка · минимальная рабочая (vLLM)</div>
+        <pre class="cfg-block"><code>
+<span class="c"># установка (нужен мощный GPU)</span>
+<span class="k">$</span><span class=""> pip install vllm</span>
+
+<span class="c"># запуск сервера</span>
+<span class="k">$</span><span class=""> vllm serve </span><span class="s">"meta-llama/Llama-3.1-8B"</span><span class=""> --port </span><span class="n">8000</span>
+
+<span class="c"># проверка API</span>
+<span class="k">$</span><span class=""> curl http://localhost:</span><span class="n">8000</span><span class="">/v1/chat/completions \</span>
+<span class="">  -d '{"model":"meta-llama/Llama-3.1-8B","messages":[{"role":"user","content":"hi"}]}'</span>
+        </code></pre>
       </div>
     </div>
 
@@ -373,12 +403,20 @@ tailwind.config = { theme: { extend: { fontFamily: { sans: ['Space Grotesk','ui-
         </ul>
       </div>
 
-      <!-- CONFIG PLACEHOLDER -->
+            <!-- CONFIG -- WORKING -->
       <div class="mt-6">
-        <div class="cfg-label">⚙ конфиг · вставим рабочий конфиг позже</div>
-        <pre class="cfg-block"><code><span class="c"># localai env</span>
-<span class="k">OPENAI_BASE_URL</span>: <span class="s">"http://localhost:8080/v1"</span>
-<span class="k">MODELS</span>: <span class="s">"llama3"</span></code></pre>
+        <div class="cfg-label">⚙ установка · минимальная рабочая (LocalAI)</div>
+        <pre class="cfg-block"><code>
+<span class="c"># docker-запуск LocalAI</span>
+<span class="k">$</span><span class=""> docker run -ti --rm -p </span><span class="n">8080</span><span class="">:8080</span><span class=""> \</span>
+<span class="">  -v ./models:/models \</span>
+<span class="">  quay.io/go-skynet/local-ai \</span>
+<span class="">  --models-path /models</span>
+
+<span class="c"># переменные окружения</span>
+<span class="k">OPENAI_BASE_URL</span><span class="">: </span><span class="s">"http://localhost:8080/v1"</span>
+<span class="k">MODELS</span><span class="">: </span><span class="s">"llama3"</span>
+        </code></pre>
       </div>
     </div>
 
